@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+
+<a routerLink="/crear">Nuevo negocio</a>
+<ul>
+    <ng-container *ngFor="let lugar of lugares; let i = index" [ngSwitch]="lugar.cercania">
+        <a routerLink="/detalles/{{lugar.id}}">
+          <li contar-clicks [ngStyle]="{color: (lugar.active) ? 'black' : 'gray'}" [ngClass]="{numero_par: (i+1) % 2 !== 0}" [resaltar]="lugar.plan">
+            {{lugar.nombre}} -
+            <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
+            <span *ngSwitchCase="2" [ngStyle]="{color: 'black'}">Cercano</span>
+            <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
+        </li></a>
+    </ng-container>
+</ul>
